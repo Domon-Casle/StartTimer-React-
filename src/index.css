@@ -1,0 +1,87 @@
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  background-color: #0c136d;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+ will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+  white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+  max-width: 280px;
+  color: black;
+  border-radius: 6px;
+  margin: 2px;
+}
+
+/* Custom */
+.center {
+  margin: auto;
+  width: 60%;
+  border: 2px solid white;
+  padding: 10px;
+}
+
+div.CurrentTimeDiv {
+  font-size: 30px;
+  text-align: center;
+  color: #f3f2f2;
+}
+
+div.TimeHolderDiv {
+  font-size: 20px;
+  padding: 10px;
+  color: #f3f2f2;
+}
+
+div.StartTimeInputDiv  {
+  font-size: 20px;
+  padding: 10px;
+  color: #f3f2f2;
+}
+
+div.StartTimeDiv {
+  font-size: 28px;
+  color: #f3f2f2;
+}
+
+div.InnerStartTimeDiv  {
+  font-size: 26px;
+  color: #f3f2f2;
+}
+
+div.EarlyTimeDiv {
+  font-size: 26px;
+  color: #f3f2f2;
+}
+
+div.InnerEarlyTimeDiv {
+  font-size: 24px;
+  color: #f3f2f2;
+}
+
+span.center {
+  text-align: center;
+}
+
+/* Bootstrap overrides */
+.navbar-inverse .navbar-brand {
+  color: #fff;
+}
+
+.navbar-header {
+  padding: 7px 0px;
+}
