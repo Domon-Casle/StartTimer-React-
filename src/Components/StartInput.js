@@ -4,19 +4,23 @@ import { Row, Col } from 'react-bootstrap';
 class StartInput extends Component {
     constructor(props) {
         super(props);
+        var startSeconds = this.props.startValue.getSeconds();
+        var startMinutes = this.props.startValue.getMinutes();
+        var startHour = this.props.startValue.getHours();
 
-        var startArray = this.props.startValue.getSeconds();
-        var defaultValue = void 0;
-
-        if (startArray === 0) {
-            defaultValue = this.props.startValue.getHours() + ":" + 
-            this.props.startValue.getMinutes() + ":00";
-        } else {
-            defaultValue = this.props.startValue.getHours() + ":" + 
-            this.props.startValue.getMinutes() + ":" + 
-            this.props.startValue.getSeconds();
+        if (startHour < 10) {
+            startHour = "0" + startHour;
         }
 
+        if (startMinutes === 0) {
+            startMinutes = "00";
+        }
+
+        if (startSeconds === 0) {
+            startSeconds = "00";
+        }
+
+        var defaultValue = startHour + ":" + startMinutes + ":" + startSeconds;
         this.state = {
             displayValue: this.props.startValue.toLocaleTimeString(),
             displayDefault: defaultValue
@@ -49,7 +53,7 @@ class StartInput extends Component {
                       <input id="StartTime" type="time" defaultValue={this.state.displayDefault} onChange={this.props.handleChange} />
                   </div>
               </Col>
-              <Col className="StartTimeDiv">
+              <Col sm={7} md={7} lg={7} className="StartTimeDiv">
                 <strong>Start Time: </strong>
                 <div className="InnerStartTimeDiv">
                     {this.state.displayValue}

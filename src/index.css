@@ -68,6 +68,10 @@ div.EarlyTimeDiv {
   color: #f3f2f2;
 }
 
+div.EntryTimeInputDiv {
+  padding: 0px 10px;
+}
+
 div.InnerEarlyTimeDiv {
   font-size: 24px;
   color: #f3f2f2;
@@ -75,6 +79,11 @@ div.InnerEarlyTimeDiv {
 
 span.center {
   text-align: center;
+}
+
+input.ConvertTime {
+  width: 110px;
+  margin: 5px 5px;
 }
 
 /* Bootstrap overrides */

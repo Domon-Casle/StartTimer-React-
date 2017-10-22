@@ -11,8 +11,22 @@ class App extends Component {
       super(props);
 
       var currDate = new Date();
-      var defaultStart = new Date(currDate.getFullYear(),
-        currDate.getMonth(), currDate.getDate(), "16", "30", "00");
+      var defaultStart = void 0;
+      var hour = currDate.getHours();
+
+      if (hour >= 18) {
+        defaultStart = new Date(currDate.getFullYear(),
+            currDate.getMonth(), currDate.getDate(), "18", "30", "00");
+      } else if (hour < 18 && hour > 12) {
+        defaultStart = new Date(currDate.getFullYear(),
+            currDate.getMonth(), currDate.getDate(), "16", "30", "00");
+      } else if (hour < 10) {
+        defaultStart = new Date(currDate.getFullYear(),
+            currDate.getMonth(), currDate.getDate(), "09", "00", "00");
+      } else {
+        defaultStart = new Date(currDate.getFullYear(),
+            currDate.getMonth(), currDate.getDate(), "11", "00", "00");
+      }
 
       this.state = {
           values : ['10', '30', '60', '90'],
