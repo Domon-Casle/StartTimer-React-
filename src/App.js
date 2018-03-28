@@ -13,20 +13,35 @@ class App extends Component {
       var currDate = new Date();
       var defaultStart = void 0;
       var hour = currDate.getHours();
+      var minutes = currDate.getMinutes();
 
-      if (hour >= 18) {
-        defaultStart = new Date(currDate.getFullYear(),
-            currDate.getMonth(), currDate.getDate(), "18", "30", "00");
-      } else if (hour < 18 && hour > 12) {
-        defaultStart = new Date(currDate.getFullYear(),
-            currDate.getMonth(), currDate.getDate(), "16", "30", "00");
-      } else if (hour < 10) {
-        defaultStart = new Date(currDate.getFullYear(),
-            currDate.getMonth(), currDate.getDate(), "09", "00", "00");
-      } else {
-        defaultStart = new Date(currDate.getFullYear(),
-            currDate.getMonth(), currDate.getDate(), "11", "00", "00");
+      if (minutes >= 30)
+      {
+        defaultStart = new Date(
+            currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), hour + 1, "00", "00"
+        );
       }
+      else
+      {
+        defaultStart = new Date(
+            currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), hour, "30", "00"
+        );
+      }
+
+
+    //   if (hour >= 18) {
+    //     defaultStart = new Date(currDate.getFullYear(),
+    //         currDate.getMonth(), currDate.getDate(), "18", "30", "00");
+    //   } else if (hour < 18 && hour > 12) {
+    //     defaultStart = new Date(currDate.getFullYear(),
+    //         currDate.getMonth(), currDate.getDate(), "16", "30", "00");
+    //   } else if (hour < 10) {
+    //     defaultStart = new Date(currDate.getFullYear(),
+    //         currDate.getMonth(), currDate.getDate(), "09", "00", "00");
+    //   } else {
+    //     defaultStart = new Date(currDate.getFullYear(),
+    //         currDate.getMonth(), currDate.getDate(), "11", "00", "00");
+    //   }
 
       this.state = {
           values : ['10', '30', '60', '90'],
@@ -88,10 +103,10 @@ class App extends Component {
           <CurrentTime />
           <StartInput startValue={this.state.startDate} handleChange={this.handleStartChange.bind(this)} />
           <Row>
-              <Col sm={5} md={5} lg={5} className="TimeHolderDiv" id="ConvertTimeDiv">
+              <Col sm={5} md={5} lg={5} id="ConvertTimeDiv">
                   <div className="TimeHolderDiv" id="1">
                       <div>
-                          <strong>Early Start: </strong>
+                          <strong className="BigStrong">Early Start: </strong>
                           <Button bsStyle="success" className="btn-xs" onClick={this.handleAddClick.bind(this)}> <span className="glyphicon glyphicon-plus"></span></Button> 
                       </div>
                   </div>

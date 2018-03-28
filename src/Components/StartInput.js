@@ -48,7 +48,7 @@ class StartInput extends Component {
               <Col sm={5} md={5} lg={5}>
                   <div className="StartTimeInputDiv">
                       <div>
-                          <strong>Start Time: </strong>
+                          <strong className="BigStrong">Start Time: </strong>
                       </div>
                       <input id="StartTime" type="time" defaultValue={this.state.displayDefault} onChange={this.props.handleChange} />
                   </div>

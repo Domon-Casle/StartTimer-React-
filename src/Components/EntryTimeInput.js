@@ -18,7 +18,7 @@ class EntryTimeInput extends Component {
     render () {
         return (
             <div className="EntryTimeInputDiv">
-                <input id={this.props.myKey} type="number" className="ConvertTime" value={this.props.myValue} onChange={this.props.handleEnterChange} /> 
+                <input id={this.props.myKey} type="text" className="ConvertTime" value={this.props.myValue} onChange={this.props.handleEnterChange} /> 
                 <Button id={this.props.myKey} bsStyle="danger" className="btn-xs" onClick={this.props.handleRemoveClick}> <span id={this.props.myKey} className="glyphicon glyphicon-minus"></span></Button> 
             </div>
         );
