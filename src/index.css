@@ -96,6 +96,37 @@ strong.BigStrong {
   font-size: 28px;
 }
 
+.notReady-red {
+  background-color: red;
+  color: white;
+  -webkit-transition: background-color 2s, color 2s;
+  transition: background-color 2s, color 2s;
+  border-radius: 6px;
+}
+
+.notReady-orange {
+  background-color: orange;
+  color: white;
+  -webkit-transition: background-color 2s, color 2s;
+  transition: background-color 2s, color 2s;
+  border-radius: 6px;
+}
+
+.notReady-yellow {
+  background-color: yellow;
+  color: black;
+  -webkit-transition: background-color 2s, color 2s;
+  transition: background-color 2s, color 2s;
+  border-radius: 6px;
+}
+
+.notReady-green {
+  background-color: green;
+  color: white;
+  -webkit-transition: background-color 2s, color 2s;
+  transition: background-color 2s, color 2s;
+  border-radius: 6px;
+}
 /* Bootstrap overrides */
 .navbar-inverse .navbar-brand {
   color: #fff;

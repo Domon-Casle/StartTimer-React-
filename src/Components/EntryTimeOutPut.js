@@ -1,19 +1,77 @@
 import React, { Component } from 'react';
 
+// TODO Get color change when close to time Red -> Orange -> Yellow -> Green
+//https://stackoverflow.com/questions/43816071/react-and-multiple-timed-events?rq=1
+//https://stackoverflow.com/questions/36270422/reactjs-settimeout-not-working
+//https://stackoverflow.com/questions/45686557/how-to-make-backgrounds-color-transition-on-a-react-component
 class EntryTimeOutPut extends Component {
     constructor(props) {
         super(props);
         var outTimeDate = new Date(this.props.myStartTime);
         outTimeDate.setSeconds(outTimeDate.getSeconds() - parseInt(this.props.myValue));
-        var finalString = outTimeDate.toLocaleTimeString() + "(" + this.props.myValue + " before)";
+        var finalString = outTimeDate.toLocaleTimeString() + " (" + this.props.myValue + " before)";
+
+        this.timeOutArray = [];
+        this.setColorTimeouts(outTimeDate);
 
         this.state = {
-            myTime: finalString
+            myTime: finalString,
+            myColor: ""
         }
     }
 
+    setColorTimeouts(outTimeDate) {
+        // Clear out timeouts
+        if (this.timeOutArray.length > 0)
+        {
+            this.timeOutArray.forEach(clearTimeout);
+        }
+
+        // Set Time outs
+        var redTimer = outTimeDate.getTime() - Date.now() - 30000;
+        if (redTimer > 0)
+        {
+            this.timeOutArray.push(setTimeout(function() {
+                this.setState({
+                    myColor: "notReady-red"
+                });
+            }.bind(this), redTimer));
+        }
+
+        var orangeTimer = outTimeDate.getTime() - Date.now() - 20000;
+        if (orangeTimer > 0)
+        {
+            this.timeOutArray.push(setTimeout(function() {
+                this.setState({
+                    myColor: "notReady-orange"
+                });
+            }.bind(this), orangeTimer));
+        }
+
+        var yellowTimer = outTimeDate.getTime() - Date.now() - 10000;
+        if (yellowTimer > 0)
+        {
+            this.timeOutArray.push(setTimeout(function() {
+                this.setState({
+                    myColor: "notReady-yellow"
+                });
+            }.bind(this), yellowTimer));
+        }
+
+        var greenTimer = outTimeDate.getTime() - Date.now();
+        if (greenTimer > 0)
+        {
+            this.timeOutArray.push(setTimeout(function() {
+                this.setState({
+                    myColor: "notReady-green"
+                });
+            }.bind(this), greenTimer));
+        }
+    }
+    
     shouldComponentUpdate(nextProps, nextState) {
         if (this.props.myValue !== nextProps.myValue ||
+            this.state.myColor !== nextState.myColor ||
             this.props.myStartTime !== nextProps.myStartTime) {
             //console.log("redo " + this.props.myValue);
             return true;
@@ -85,22 +143,25 @@ class EntryTimeOutPut extends Component {
         var finalString = null;
         if (value.length > 0)
         {
-            finalString = outTimeDate.toLocaleTimeString() + "(" + nextProps.myValue + " before)";
+            finalString = outTimeDate.toLocaleTimeString() + " (" + nextProps.myValue + " before)";
         }
         else 
         {
             finalString = outTimeDate.toLocaleTimeString(); 
         }
         
+        this.setColorTimeouts(outTimeDate);
+
         this.setState({
-            myTime: finalString
+            myTime: finalString,
+            myColor: "notReady-Red"
         });
     }
 
     render() {
         return (
             <div className="InnerEarlyTimeDiv">
-                <span>{this.state.myTime}</span>
+                <span className={this.state.myColor}>{this.state.myTime}</span>
             </div>
         );
     }
