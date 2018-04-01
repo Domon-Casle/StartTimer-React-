@@ -8,6 +8,8 @@ class StartInput extends Component {
         var startMinutes = this.props.startValue.getMinutes();
         var startHour = this.props.startValue.getHours();
 
+        this.timeOutArray = [];
+
         if (startHour < 10) {
             startHour = "0" + startHour;
         }
@@ -20,15 +22,69 @@ class StartInput extends Component {
             startSeconds = "00";
         }
 
+        // Set the timeouts
+        this.startTimeout(this.props.startValue);
+
         var defaultValue = startHour + ":" + startMinutes + ":" + startSeconds;
         this.state = {
             displayValue: this.props.startValue.toLocaleTimeString(),
-            displayDefault: defaultValue
+            displayDefault: defaultValue,
+            myColor: ""
+        }
+    }
+
+    startTimeout (startTimeDate) {
+        // Clear out timeouts
+        if (this.timeOutArray.length > 0)
+        {
+            this.timeOutArray.forEach(clearTimeout);
+        }
+
+        // Set Time outs
+        var redTimer = startTimeDate.getTime() - Date.now() - 30000;
+        if (redTimer > 0)
+        {
+            this.timeOutArray.push(setTimeout(function() {
+                this.setState({
+                    myColor: "notReady-red"
+                });
+            }.bind(this), redTimer));
+        }
+
+        var orangeTimer = startTimeDate.getTime() - Date.now() - 20000;
+        if (orangeTimer > 0)
+        {
+            this.timeOutArray.push(setTimeout(function() {
+                this.setState({
+                    myColor: "notReady-orange"
+                });
+            }.bind(this), orangeTimer));
+        }
+
+        var yellowTimer = startTimeDate.getTime() - Date.now() - 10000;
+        if (yellowTimer > 0)
+        {
+            this.timeOutArray.push(setTimeout(function() {
+                this.setState({
+                    myColor: "notReady-yellow"
+                });
+            }.bind(this), yellowTimer));
+        }
+
+        var greenTimer = startTimeDate.getTime() - Date.now();
+        if (greenTimer > 0)
+        {
+            this.timeOutArray.push(setTimeout(function() {
+                this.setState({
+                    myColor: "notReady-green"
+                });
+            }.bind(this), greenTimer));
         }
     }
 
     shouldComponentUpdate (nextProps, nextState) {
-        if (this.props.startValue !== nextProps.startValue) {
+        if ((this.props.startValue !== nextProps.startValue) ||
+            (this.state.myColor !== nextState.myColor)) {
             return true;
         } else {
             return false;
@@ -37,8 +93,13 @@ class StartInput extends Component {
 
     componentWillReceiveProps (nextProps) {
         var outTimeDate = new Date(nextProps.startValue);
+
+        // Set timeout timers 
+        this.startTimeout(outTimeDate);
+
         this.setState({
-            displayValue: outTimeDate.toLocaleTimeString()
+            displayValue: outTimeDate.toLocaleTimeString(),
+            myColor: "notReady-Red"
         });
     }
 
@@ -56,7 +117,7 @@ class StartInput extends Component {
               <Col sm={4} md={4} lg={4} className="StartTimeDiv">
                 <strong>Start Time </strong>
                 <div className="InnerStartTimeDiv">
-                    {this.state.displayValue}
+                    <span className={this.state.myColor}>{this.state.displayValue}</span>
                 </div>
               </Col>
             </div>

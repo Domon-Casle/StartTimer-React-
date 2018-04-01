@@ -152,7 +152,8 @@ class EntryTimeOutPut extends Component {
         var finalString = null;
         if (value.length > 0 && value !== " ")
         {
-            finalString = outTimeDate.toLocaleTimeString() + " (" + nextProps.myValue + " before)";
+            var stringValue = nextProps.myValue.replace(" ", "");
+            finalString = outTimeDate.toLocaleTimeString() + " (" + stringValue + " before)";
         }
         else if (value === " ")
         {

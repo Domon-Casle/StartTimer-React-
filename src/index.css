@@ -106,7 +106,7 @@ strong.BigStrong {
 
 .notReady-orange {
   background-color: orange;
-  color: white;
+  color: black;
   -webkit-transition: background-color 2s, color 2s;
   transition: background-color 2s, color 2s;
   border-radius: 6px;
