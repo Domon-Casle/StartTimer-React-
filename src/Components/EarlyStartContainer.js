@@ -78,7 +78,7 @@ class EarlyStartContainer extends Component {
                     <StartInput startValue={this.state.startDate} handleChange={this.handleStartChange.bind(this)} />
                 </Row>
                 <Row>
-                    <Col sm={3} md={3} lg={3} id="ConvertTimeDiv">
+                    <Col sm={2} md={2} lg={2} id="ConvertTimeDiv">
                         <div className="TimeHolderDiv" id="1">
                             <div>
                                 <strong className="BigStrong">Early Start </strong>
@@ -89,7 +89,7 @@ class EarlyStartContainer extends Component {
                             return <EntryTimeInput key={index} myKey={index} myValue={semiValue} handleEnterChange={this.handleEnterChange.bind(this)} handleRemoveClick={this.handleRemoveClick.bind(this)} />
                         }.bind(this))}
                     </Col>
-                    <Col sm={3} md={3} lg={3} className="EarlyTimeDiv">
+                    <Col sm={4} md={4} lg={4} className="EarlyTimeDiv">
                         <strong>Early Start </strong>
                         {this.state.values.map(function (semiValue, index) {
                             return <EntryTimeOutPut key={index} myValue={semiValue} myStartTime={this.state.startDate} />

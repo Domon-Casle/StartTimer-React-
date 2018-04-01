@@ -45,7 +45,7 @@ class StartInput extends Component {
     render () {
         return (
             <div>
-              <Col sm={3} md={3} lg={3}>
+              <Col sm={2} md={2} lg={2}>
                   <div className="StartTimeInputDiv">
                       <div>
                           <strong className="BigStrong">Start Time </strong>
@@ -53,7 +53,7 @@ class StartInput extends Component {
                       <input id={this.props.myId} type="time" defaultValue={this.state.displayDefault} onChange={this.props.handleChange} />
                   </div>
               </Col>
-              <Col sm={3} md={3} lg={3} className="StartTimeDiv">
+              <Col sm={4} md={4} lg={4} className="StartTimeDiv">
                 <strong>Start Time </strong>
                 <div className="InnerStartTimeDiv">
                     {this.state.displayValue}
