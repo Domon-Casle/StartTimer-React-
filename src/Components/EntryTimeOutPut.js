@@ -7,12 +7,21 @@ import React, { Component } from 'react';
 class EntryTimeOutPut extends Component {
     constructor(props) {
         super(props);
+        var finalString;
         var outTimeDate = new Date(this.props.myStartTime);
-        outTimeDate.setSeconds(outTimeDate.getSeconds() - parseInt(this.props.myValue));
-        var finalString = outTimeDate.toLocaleTimeString() + " (" + this.props.myValue + " before)";
-
         this.timeOutArray = [];
-        this.setColorTimeouts(outTimeDate);
+
+        if (this.props.myValue !== " ")
+        {
+            outTimeDate.setSeconds(outTimeDate.getSeconds() - parseInt(this.props.myValue));
+            finalString = outTimeDate.toLocaleTimeString() + " (" + this.props.myValue + " before)";
+
+            this.setColorTimeouts(outTimeDate);
+        }
+        else 
+        {
+            finalString = "Input an early start time";
+        }
 
         this.state = {
             myTime: finalString,
@@ -141,11 +150,15 @@ class EntryTimeOutPut extends Component {
         outTimeDate.setSeconds(outTimeDate.getSeconds() - parseInt(newValue));
 
         var finalString = null;
-        if (value.length > 0)
+        if (value.length > 0 && value !== " ")
         {
             finalString = outTimeDate.toLocaleTimeString() + " (" + nextProps.myValue + " before)";
         }
-        else 
+        else if (value === " ")
+        {
+            finalString = "Input an early start time";
+        }
+        else
         {
             finalString = outTimeDate.toLocaleTimeString(); 
         }

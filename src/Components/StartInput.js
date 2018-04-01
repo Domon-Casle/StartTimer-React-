@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import {Col} from 'react-bootstrap';
 
 class StartInput extends Component {
     constructor(props) {
@@ -44,22 +44,22 @@ class StartInput extends Component {
 
     render () {
         return (
-            <Row>
-              <Col sm={5} md={5} lg={5}>
+            <div>
+              <Col sm={3} md={3} lg={3}>
                   <div className="StartTimeInputDiv">
                       <div>
-                          <strong className="BigStrong">Start Time: </strong>
+                          <strong className="BigStrong">Start Time </strong>
                       </div>
-                      <input id="StartTime" type="time" defaultValue={this.state.displayDefault} onChange={this.props.handleChange} />
+                      <input id={this.props.myId} type="time" defaultValue={this.state.displayDefault} onChange={this.props.handleChange} />
                   </div>
               </Col>
-              <Col sm={7} md={7} lg={7} className="StartTimeDiv">
-                <strong>Start Time: </strong>
+              <Col sm={3} md={3} lg={3} className="StartTimeDiv">
+                <strong>Start Time </strong>
                 <div className="InnerStartTimeDiv">
                     {this.state.displayValue}
                 </div>
               </Col>
-            </Row>
+            </div>
         );
     }
 }
