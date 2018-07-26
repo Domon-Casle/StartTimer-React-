@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Col} from 'react-bootstrap';
+import moment from 'moment';
+import TimePicker from 'rc-time-picker';
 
 class StartInput extends Component {
     constructor(props) {
@@ -7,6 +9,7 @@ class StartInput extends Component {
         var startSeconds = this.props.startValue.getSeconds();
         var startMinutes = this.props.startValue.getMinutes();
         var startHour = this.props.startValue.getHours();
+        var defaultMoment = moment();
 
         this.timeOutArray = [];
 
@@ -26,7 +29,15 @@ class StartInput extends Component {
         this.startTimeout(this.props.startValue);
 
         var defaultValue = startHour + ":" + startMinutes + ":" + startSeconds;
+
+        defaultMoment.set({
+            'hour': startHour,
+            'minute': startMinutes,
+            'second': startSeconds
+        });
+
         this.state = {
+            momentDisplayDefault: defaultMoment,
             displayValue: this.props.startValue.toLocaleTimeString(),
             displayDefault: defaultValue,
             myColor: ""
@@ -111,6 +122,7 @@ class StartInput extends Component {
                       <div>
                           <strong className="BigStrong">Start Time </strong>
                       </div>
+                      <TimePicker use12Hours="true" defaultValue={this.state.momentDisplayDefault} />
                       <input id={this.props.myId} type="time" defaultValue={this.state.displayDefault} onChange={this.props.handleChange} />
                   </div>
               </Col>
